@@ -1,0 +1,42 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Local databases & persistent data
+data/chroma/
+data/checkpoints.db
+*.sqlite3
+*.db
+
+# Environment variables & secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Distribution & build artifacts
+dist/
+build/
+*.egg-info/
+
+# IDE & Editor caches
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
