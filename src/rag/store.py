@@ -311,6 +311,18 @@ class ChromaVectorStore(VectorStoreService):
                 embedding_function=self.embedding_function,
                 metadata={"hnsw:space": "cosine"},
             )
+            if self.collection_name == "fde_knowledge_base":
+                from src.rag.chunking import chunk_article, deduplicate_and_enrich
+                from src.rag.ingest import DEFAULT_BITEXT_SEED_ROWS
+
+                articles = deduplicate_and_enrich(DEFAULT_BITEXT_SEED_ROWS)
+                reseed_chunks: list[dict[str, Any]] = []
+                for art in articles:
+                    reseed_chunks.extend(chunk_article(art))
+                self.add_documents(reseed_chunks)
+                logger.info(
+                    f"Auto-seeded {len(reseed_chunks)} chunks into recreated '{self.collection_name}' collection."
+                )
 
     def add_documents(self, documents: list[dict[str, Any]]) -> None:
         """Add or upsert documents with Chroma-compatible flat metadata."""
@@ -470,3 +482,15 @@ class ChromaVectorStore(VectorStoreService):
                 embedding_function=self.embedding_function,
                 metadata={"hnsw:space": "cosine"},
             )
+            if self.collection_name == "fde_knowledge_base":
+                from src.rag.chunking import chunk_article, deduplicate_and_enrich
+                from src.rag.ingest import DEFAULT_BITEXT_SEED_ROWS
+
+                articles = deduplicate_and_enrich(DEFAULT_BITEXT_SEED_ROWS)
+                reseed_chunks: list[dict[str, Any]] = []
+                for art in articles:
+                    reseed_chunks.extend(chunk_article(art))
+                self.add_documents(reseed_chunks)
+                logger.info(
+                    f"Auto-seeded {len(reseed_chunks)} chunks into recreated '{self.collection_name}' collection."
+                )

@@ -6,7 +6,7 @@
     "category": "ACCOUNT",
     "content": "Title: Create Account\nCategory: ACCOUNT | Intent: create_account\nTypical Customer Questions:\n- How do I sign up for a new customer account?\n- Do I need an account to make a purchase or can I checkout as guest?\n- Creating an account for rewards points.\n\nSupport Policy / Resolution:\nTo register an account, click 'Sign Up' at the top right of the homepage, enter your email and password, and verify your email address via the confirmation link sent to your inbox.",
     "policy_text": "To register an account, click 'Sign Up' at the top right of the homepage, enter your email and password, and verify your email address via the confirmation link sent to your inbox.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "create_account",
       "sample_queries": [
@@ -27,7 +27,7 @@
     "category": "ACCOUNT",
     "content": "Title: Delete Account\nCategory: ACCOUNT | Intent: delete_account\nTypical Customer Questions:\n- How do I permanently delete my account and personal data?\n- Close my account and purge my personal information.\n\nSupport Policy / Resolution:\nUnder privacy regulations (GDPR/CCPA), you can request account deletion by submitting a data erasure request in Account Privacy Settings. Your account, profile data, and saved payment methods will be permanently erased within 30 days.",
     "policy_text": "Under privacy regulations (GDPR/CCPA), you can request account deletion by submitting a data erasure request in Account Privacy Settings. Your account, profile data, and saved payment methods will be permanently erased within 30 days.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "delete_account",
       "sample_queries": [
@@ -47,7 +47,7 @@
     "category": "ACCOUNT",
     "content": "Title: Edit Account\nCategory: ACCOUNT | Intent: edit_account\nTypical Customer Questions:\n- How do I change the email address linked to my account?\n- Where do I update my phone number on my profile?\n- Delete or update my saved payment cards in my account.\n\nSupport Policy / Resolution:\nTo update profile information, sign in and navigate to 'Account Settings'. You can edit your name, default shipping addresses, telephone number, and communication preferences.",
     "policy_text": "To update profile information, sign in and navigate to 'Account Settings'. You can edit your name, default shipping addresses, telephone number, and communication preferences.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "edit_account",
       "sample_queries": [
@@ -68,7 +68,7 @@
     "category": "ACCOUNT",
     "content": "Title: Recover Password\nCategory: ACCOUNT | Intent: recover_password\nTypical Customer Questions:\n- I forgot my password and cannot sign in.\n- My account is locked after too many failed password attempts.\n- How do I reset my account login credentials?\n\nSupport Policy / Resolution:\nClick 'Forgot Password' on the login screen and enter your registered email. A secure password reset link will be sent to your email, valid for 60 minutes.",
     "policy_text": "Click 'Forgot Password' on the login screen and enter your registered email. A secure password reset link will be sent to your email, valid for 60 minutes.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "recover_password",
       "sample_queries": [
@@ -89,7 +89,7 @@
     "category": "BILLING",
     "content": "Title: Apply Promotional Discount\nCategory: BILLING | Intent: apply_promotional_discount\nTypical Customer Questions:\n- My coupon code did not apply at checkout.\n- Can you apply a discount promo code after I already paid?\n- The 20 percent off coupon was not deducted from my invoice.\n\nSupport Policy / Resolution:\nPromotional codes must be entered in the promo code field before finalizing order payment. If a valid promotional code failed to apply due to a technical error, contact billing support with your order number for a retroactive credit adjustment.",
     "policy_text": "Promotional codes must be entered in the promo code field before finalizing order payment. If a valid promotional code failed to apply due to a technical error, contact billing support with your order number for a retroactive credit adjustment.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "apply_promotional_discount",
       "sample_queries": [
@@ -112,7 +112,7 @@
     "category": "BILLING",
     "content": "Title: Check Invoice\nCategory: BILLING | Intent: check_invoice\nTypical Customer Questions:\n- Where can I download my latest invoice?\n- I need a copy of my receipt for my tax records.\n- Can you email me my monthly billing statement?\n\nSupport Policy / Resolution:\nYou can view and download all past invoices from the Billing section of your Account Dashboard. Invoices are generated as PDF files within 24 hours of successful payment.",
     "policy_text": "You can view and download all past invoices from the Billing section of your Account Dashboard. Invoices are generated as PDF files within 24 hours of successful payment.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "check_invoice",
       "sample_queries": [
@@ -134,7 +134,7 @@
     "category": "BILLING",
     "content": "Title: Dispute Charge\nCategory: BILLING | Intent: dispute_charge\nTypical Customer Questions:\n- I see an unfamiliar charge on my bank statement from your store.\n- I was charged twice for the same order.\n\nSupport Policy / Resolution:\nIf you notice an unrecognized charge, please verify if an authorized family member made a purchase. To dispute an erroneous charge, provide the date, last 4 digits of the card, and amount to billing support for immediate review.",
     "policy_text": "If you notice an unrecognized charge, please verify if an authorized family member made a purchase. To dispute an erroneous charge, provide the date, last 4 digits of the card, and amount to billing support for immediate review.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "dispute_charge",
       "sample_queries": [
@@ -155,7 +155,7 @@
     "category": "BILLING",
     "content": "Title: Payment Issue\nCategory: BILLING | Intent: payment_issue\nTypical Customer Questions:\n- My credit card was declined at checkout.\n- Why does my transaction say payment authorization failed?\n- Checkout keeps rejecting my card.\n\nSupport Policy / Resolution:\nPayment failures typically occur due to insufficient funds, incorrect CVV or billing zip codes, or automated bank security blocks. Please verify your billing address or try an alternative payment method.",
     "policy_text": "Payment failures typically occur due to insufficient funds, incorrect CVV or billing zip codes, or automated bank security blocks. Please verify your billing address or try an alternative payment method.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "payment_issue",
       "sample_queries": [
@@ -176,7 +176,7 @@
     "category": "CANCELLATION",
     "content": "Title: Cancel Order\nCategory: CANCELLATION | Intent: cancel_order\nTypical Customer Questions:\n- I want to cancel my order immediately.\n- Please stop shipment and cancel order #98234.\n- I changed my mind, how do I cancel my order?\n\nSupport Policy / Resolution:\nOrders may be cancelled free of charge within 30 minutes of placement before warehouse dispatch. Once an order is processed for packing, it cannot be cancelled and must be returned after delivery.",
     "policy_text": "Orders may be cancelled free of charge within 30 minutes of placement before warehouse dispatch. Once an order is processed for packing, it cannot be cancelled and must be returned after delivery.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "cancel_order",
       "sample_queries": [
@@ -197,7 +197,7 @@
     "category": "CANCELLATION",
     "content": "Title: Check Cancellation Fee\nCategory: CANCELLATION | Intent: check_cancellation_fee\nTypical Customer Questions:\n- Is there a penalty or fee for cancelling my order?\n- Do you charge a restocking fee if I cancel after it ships?\n- Will I get all my money back if I cancel?\n\nSupport Policy / Resolution:\nThere are no cancellation fees if the order is cancelled within the 30-minute grace period. Custom-manufactured items and expedited freight shipments may be subject to a 15% restocking fee if cancelled after processing starts.",
     "policy_text": "There are no cancellation fees if the order is cancelled within the 30-minute grace period. Custom-manufactured items and expedited freight shipments may be subject to a 15% restocking fee if cancelled after processing starts.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "check_cancellation_fee",
       "sample_queries": [
@@ -219,7 +219,7 @@
     "category": "ORDER",
     "content": "Title: Change Order\nCategory: ORDER | Intent: change_order\nTypical Customer Questions:\n- Can I add another item to an order I just placed?\n- I selected the wrong size, how do I change the order?\n- How do I switch the color of an item in my order?\n\nSupport Policy / Resolution:\nWe cannot modify items or quantities in an existing order once submitted. You may place a new order for additional items, or cancel the current order within 30 minutes and reorder.",
     "policy_text": "We cannot modify items or quantities in an existing order once submitted. You may place a new order for additional items, or cancel the current order within 30 minutes and reorder.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "change_order",
       "sample_queries": [
@@ -240,7 +240,7 @@
     "category": "ORDER",
     "content": "Title: Place Order\nCategory: ORDER | Intent: place_order\nTypical Customer Questions:\n- How do I place an order online?\n- Can I place an order over the phone with an agent?\n- Can I place a bulk order for my company?\n\nSupport Policy / Resolution:\nTo place an order, add your desired items to the shopping cart, proceed to checkout, provide your shipping details, and select your preferred payment method. You will receive an email confirmation upon completion.",
     "policy_text": "To place an order, add your desired items to the shopping cart, proceed to checkout, provide your shipping details, and select your preferred payment method. You will receive an email confirmation upon completion.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "place_order",
       "sample_queries": [
@@ -261,7 +261,7 @@
     "category": "ORDER",
     "content": "Title: Track Order\nCategory: ORDER | Intent: track_order\nTypical Customer Questions:\n- Where is my order? Can you check the status?\n- What is the status of order #45129?\n- Has my package left the warehouse yet?\n\nSupport Policy / Resolution:\nYou can check your order status anytime by entering your order number and email on our Order Lookup page. Status updates include Order Placed, Processing, Dispatched, and Delivered.",
     "policy_text": "You can check your order status anytime by entering your order number and email on our Order Lookup page. Status updates include Order Placed, Processing, Dispatched, and Delivered.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "track_order",
       "sample_queries": [
@@ -282,7 +282,7 @@
     "category": "REFUND",
     "content": "Title: Get Refund\nCategory: REFUND | Intent: get_refund\nTypical Customer Questions:\n- How do I request a refund for an item I purchased?\n- What is your refund policy window?\n- I want my money back for an unwanted item.\n\nSupport Policy / Resolution:\nFull refunds are available within 30 days of purchase for unused items in original packaging. To initiate a refund, submit a return request through the Returns Portal or contact customer service.",
     "policy_text": "Full refunds are available within 30 days of purchase for unused items in original packaging. To initiate a refund, submit a return request through the Returns Portal or contact customer service.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "get_refund",
       "sample_queries": [
@@ -303,7 +303,7 @@
     "category": "REFUND",
     "content": "Title: Refund Damaged Item\nCategory: REFUND | Intent: refund_damaged_item\nTypical Customer Questions:\n- My package arrived broken and damaged. How do I get a refund?\n- The item inside the box was cracked during delivery.\n- Received a defective product, I need an immediate reimbursement.\n- What photos or evidence do I need to submit to get a refund for a broken item?\n- Can I get a refund if the delivery box arrived crushed and the goods inside are ruined?\n\nSupport Policy / Resolution:\nFor items that arrive damaged or defective, we provide an immediate free replacement or 100% refund without requiring return shipping. Please provide your order number and photos of the damaged item.",
     "policy_text": "For items that arrive damaged or defective, we provide an immediate free replacement or 100% refund without requiring return shipping. Please provide your order number and photos of the damaged item.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "refund_damaged_item",
       "sample_queries": [
@@ -326,7 +326,7 @@
     "category": "REFUND",
     "content": "Title: Track Refund\nCategory: REFUND | Intent: track_refund\nTypical Customer Questions:\n- When will my refund show up in my bank account?\n- I have not received my credit refund yet.\n- Check the status of my return refund payout.\n\nSupport Policy / Resolution:\nOnce our warehouse inspects your returned merchandise, approved refunds are processed within 3-5 business days. Depending on your financial institution, funds appear on your statement in 5-10 business days.",
     "policy_text": "Once our warehouse inspects your returned merchandise, approved refunds are processed within 3-5 business days. Depending on your financial institution, funds appear on your statement in 5-10 business days.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "track_refund",
       "sample_queries": [
@@ -347,7 +347,7 @@
     "category": "SHIPPING",
     "content": "Title: Change Shipping Address\nCategory: SHIPPING | Intent: change_shipping_address\nTypical Customer Questions:\n- I entered the wrong delivery address on my recent order.\n- Can I redirect my package to a new apartment address?\n- Update my delivery address before shipment.\n\nSupport Policy / Resolution:\nShipping addresses can be modified within 60 minutes of order placement if the package has not yet entered fulfillment. Contact support immediately with your order number and updated address.",
     "policy_text": "Shipping addresses can be modified within 60 minutes of order placement if the package has not yet entered fulfillment. Contact support immediately with your order number and updated address.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "change_shipping_address",
       "sample_queries": [
@@ -369,7 +369,7 @@
     "category": "SHIPPING",
     "content": "Title: Delivery Options\nCategory: SHIPPING | Intent: delivery_options\nTypical Customer Questions:\n- What delivery methods and speeds are available?\n- Do you offer overnight delivery?\n- How long does standard delivery take to arrive?\n\nSupport Policy / Resolution:\nWe offer Standard Shipping (3-5 business days), Expedited Shipping (2 business days), and Next-Day Express Delivery. Shipping costs are calculated at checkout based on weight and destination.",
     "policy_text": "We offer Standard Shipping (3-5 business days), Expedited Shipping (2 business days), and Next-Day Express Delivery. Shipping costs are calculated at checkout based on weight and destination.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "delivery_options",
       "sample_queries": [
@@ -391,7 +391,7 @@
     "category": "SHIPPING",
     "content": "Title: Switch Shipping Method\nCategory: SHIPPING | Intent: switch_shipping_method\nTypical Customer Questions:\n- Can I upgrade my order to express shipping after ordering?\n- Change standard shipping to next day delivery.\n\nSupport Policy / Resolution:\nShipping speeds may be upgraded within 45 minutes of purchase prior to order picking. Contact customer service with your order details to pay the difference for expedited or overnight delivery.",
     "policy_text": "Shipping speeds may be upgraded within 45 minutes of purchase prior to order picking. Contact customer service with your order details to pay the difference for expedited or overnight delivery.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "switch_shipping_method",
       "sample_queries": [
@@ -412,7 +412,7 @@
     "category": "SHIPPING",
     "content": "Title: Track Shipment\nCategory: SHIPPING | Intent: track_shipment\nTypical Customer Questions:\n- How can I track the carrier delivering my package?\n- Tracking says my package is delayed in transit.\n\nSupport Policy / Resolution:\nOnce your order dispatches, you will receive an email containing a carrier tracking link (FedEx, UPS, or USPS). You can also monitor live carrier tracking in the Orders tab of your account.",
     "policy_text": "Once your order dispatches, you will receive an email containing a carrier tracking link (FedEx, UPS, or USPS). You can also monitor live carrier tracking in the Orders tab of your account.",
-    "created_at": "2026-10-25T05:06:39.571965+00:00",
+    "created_at": "2026-10-25T14:02:12.136804+00:00",
     "metadata": {
       "intent": "track_shipment",
       "sample_queries": [

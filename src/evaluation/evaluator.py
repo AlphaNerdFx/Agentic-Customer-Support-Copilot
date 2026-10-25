@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import contextlib
 import logging
 import statistics
 import time
@@ -96,6 +97,17 @@ class CopilotEvaluator:
             self.vector_store = retriever.vector_store
         else:
             self.vector_store = ChromaVectorStore()
+
+        if self.vector_store.count() == 0:
+            from src.rag.chunking import chunk_article, deduplicate_and_enrich
+            from src.rag.ingest import DEFAULT_BITEXT_SEED_ROWS
+
+            articles = deduplicate_and_enrich(DEFAULT_BITEXT_SEED_ROWS)
+            chunks: list[dict[str, Any]] = []
+            for art in articles:
+                chunks.extend(chunk_article(art))
+            self.vector_store.add_documents(chunks)
+
         self.retriever = retriever or RAGRetriever(vector_store=self.vector_store)
         self.graph = build_graph(retriever=self.retriever)
 
@@ -242,6 +254,14 @@ class CopilotEvaluator:
     ) -> dict[str, Any]:
         """Execute full test suite across all test cases and compile metrics."""
         results: list[dict[str, Any]] = []
+
+        if test_cases:
+            with contextlib.suppress(Exception):
+                self.retriever.retrieve(test_cases[0].query, top_k=1)
+                if is_valid_openai_key(settings.openai_api_key):
+                    from src.agent.nodes.generate import _get_chat_llm
+
+                    _get_chat_llm().invoke("ok")
 
         for case in test_cases:
             res = self.evaluate_test_case(case)

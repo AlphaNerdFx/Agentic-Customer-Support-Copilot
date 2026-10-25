@@ -124,16 +124,21 @@ class RAGRetriever:
         [1] Title (source_id)
         Content: ...
         """
-        if not chunks:
-            return NO_RELEVANT_CONTEXT
+        return format_context_blocks(chunks)
 
-        formatted_blocks: list[str] = []
-        for i, chunk in enumerate(chunks, start=1):
-            title = chunk.get("title", "Knowledge Article")
-            source_id = chunk.get("source_id", f"src-{i}")
-            content = chunk.get("content", "").strip()
 
-            block = f"[{i}] {title} ({source_id})\n{content}"
-            formatted_blocks.append(block)
+def format_context_blocks(chunks: list[dict[str, Any]]) -> str:
+    """Format retrieved chunks into numbered context blocks without instantiating a vector store."""
+    if not chunks:
+        return NO_RELEVANT_CONTEXT
 
-        return "\n\n".join(formatted_blocks)
+    formatted_blocks: list[str] = []
+    for i, chunk in enumerate(chunks, start=1):
+        title = chunk.get("title", "Knowledge Article")
+        source_id = chunk.get("source_id", f"src-{i}")
+        content = chunk.get("content", "").strip()
+
+        block = f"[{i}] {title} ({source_id})\n{content}"
+        formatted_blocks.append(block)
+
+    return "\n\n".join(formatted_blocks)

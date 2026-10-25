@@ -9,8 +9,8 @@ from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 
 from src.agent.prompts.system import CITATION_SYSTEM_PROMPT
 
-# PII Detection regular expressions
-CREDIT_CARD_PATTERN = re.compile(r"(?<![A-Za-z#\-])\b(?:\d[ -]*?){13,16}\b")
+# PII Detection regular expressions (13-19 digits covering standard & extended card numbers)
+CREDIT_CARD_PATTERN = re.compile(r"(?<![A-Za-z#\-])\b(?:\d[ -]*?){13,19}\b")
 SSN_PATTERN = re.compile(r"(?<![A-Za-z#\-])\b\d{3}[ -]\d{2}[ -]\d{4}\b")
 
 # Adversarial prompt injection keywords and phrases

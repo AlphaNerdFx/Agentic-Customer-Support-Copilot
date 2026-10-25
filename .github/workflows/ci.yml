@@ -32,6 +32,10 @@ jobs:
         run: |
           pytest -v
 
+      - name: Ingest Knowledge Base into ChromaDB
+        run: |
+          python scripts/ingest.py
+
       - name: Run Golden Dataset Evaluation
         run: |
           python scripts/evaluate.py

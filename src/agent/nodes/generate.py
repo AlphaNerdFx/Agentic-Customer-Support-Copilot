@@ -18,7 +18,7 @@ from src.agent.prompts.templates import (
 )
 from src.agent.state import CopilotState
 from src.core.config import settings
-from src.rag.retriever import RAGRetriever, validate_and_clean_citations
+from src.rag.retriever import format_context_blocks, validate_and_clean_citations
 from src.rag.store import is_valid_openai_key
 
 logger = logging.getLogger(__name__)
@@ -29,6 +29,19 @@ INSUFFICIENT_KNOWLEDGE_MESSAGE = (
 )
 
 _TIKTOKEN_ENCODER = None
+_CHAT_LLM_CACHE: dict[tuple[str, str], ChatOpenAI] = {}
+
+
+def _get_chat_llm() -> ChatOpenAI:
+    """Return cached ChatOpenAI instance to preserve HTTP/2 keep-alive connections."""
+    key = (settings.openai_model, settings.openai_api_key)
+    if key not in _CHAT_LLM_CACHE:
+        _CHAT_LLM_CACHE[key] = ChatOpenAI(
+            model=settings.openai_model,
+            api_key=settings.openai_api_key,
+            temperature=0.1,
+        )
+    return _CHAT_LLM_CACHE[key]
 
 
 def get_token_encoder():
@@ -165,22 +178,30 @@ def generate_response_node(state: CopilotState) -> dict[str, Any]:
 
     if is_valid_openai_key(settings.openai_api_key):
         try:
-            retriever_helper = RAGRetriever()
-            context_str = retriever_helper.format_context_for_llm(retrieved_chunks)
+            context_str = format_context_blocks(retrieved_chunks)
+            if requires_tool and proposed_tool:
+                t_name = proposed_tool.get("tool_name", "")
+                context_str += (
+                    f"\n\n[Active Tool Gate: '{t_name}' is queued for supervisor approval. "
+                    "Briefly summarize the relevant policy from [1] and state that you have "
+                    f"prepared the '{t_name}' request for supervisor review.]"
+                )
             history = state.get("messages", [])[:-1] if state.get("messages") else []
             gen_messages = format_generation_messages(
                 context_str=context_str,
                 user_query=sanitized_query,
                 conversation_history=history,
             )
-            llm = ChatOpenAI(
-                model=settings.openai_model,
-                api_key=settings.openai_api_key,
-                temperature=0.1,
-            )
+            llm = _get_chat_llm()
             llm_result = llm.invoke(gen_messages)
             if isinstance(llm_result.content, str):
-                draft_response = llm_result.content
+                candidate = llm_result.content.strip()
+                if (
+                    retrieved_chunks
+                    and "don't have enough information" not in candidate.lower()
+                    and "[" in candidate
+                ):
+                    draft_response = candidate
         except Exception as exc:  # noqa: BLE001
             logger.warning(
                 f"Live LLM generation failed ({exc}); using deterministic grounded synthesis."

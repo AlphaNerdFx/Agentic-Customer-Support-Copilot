@@ -9,6 +9,7 @@ import streamlit as st
 
 from frontend.components.approval import render_approval_card
 from frontend.components.chat import render_chat_history
+from frontend.components.citations import render_citation_card
 from frontend.components.dashboard import render_metrics_dashboard
 from frontend.utils import (
     get_health,
@@ -206,6 +207,10 @@ if user_input:
             tool_proposal = resp_content.get("tool_proposal")
 
             st.markdown(assistant_text)
+            if citations and isinstance(citations, list):
+                st.caption("📚 Referenced Knowledge Base Sources:")
+                for cit in citations:
+                    render_citation_card(cit)
 
             st.session_state.messages.append(
                 {

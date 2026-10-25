@@ -46,10 +46,10 @@ INFORMATIONAL_REFUND_PATTERNS = [
 
 # Actionable triggers for initiate_refund
 ACTIONABLE_REFUND_PATTERNS = [
-    r"(?:i\s+(?:want|need|demand|request)|please|issue|process)\s+(?:a\s+)?(?:full\s+|partial\s+)?refund",
-    r"(?:demand|want|need|request)\s+(?:a\s+)?(?:full\s+|partial\s+)?refund",
-    r"refund\s+(?:my|this|me|the)\s+(?:order|money|payment|charge|item|purchase)",
-    r"(?:broken|damaged|defective|ruined|crushed|shattered)\s+(?:item|product|box|goods).*refund",
+    r"(?:i\s+(?:want|need|demand|request|would\s+like)(?:\s+you)?(?:\s+to)?|please|issue|process|give\s+me)\s+(?:a\s+|an\s+|me\s+)?(?:full\s+|partial\s+|immediate\s+)?(?:\$?\d+(?:\.\d{1,2})?\s*(?:usd|euros?|eur|\$)?\s+)?refund",
+    r"(?:demand|want|need|request|issue|process)\s+(?:to\s+|a\s+|an\s+)?(?:full\s+|partial\s+|immediate\s+)?(?:\$?\d+(?:\.\d{1,2})?\s*(?:usd|euros?|eur|\$)?\s+)?refund",
+    r"refund\s+(?:my|this|me|the|for|\$?\d+)",
+    r"(?:broken|damaged|defective|ruined|crushed|shattered).*refund",
     r"refund.*(?:broken|damaged|defective|ruined|crushed|shattered)",
     r"charged\s+twice.*refund",
     r"get\s+(?:my\s+)?money\s+back",
@@ -57,7 +57,7 @@ ACTIONABLE_REFUND_PATTERNS = [
 
 # Actionable triggers for escalate_ticket
 ACTIONABLE_ESCALATE_PATTERNS = [
-    r"(?:speak|talk|transfer|connect)\s+(?:me\s+)?(?:to\s+)?(?:a|an)?\s*(?:senior\s+|tier-2\s+|lead\s+)?(?:supervisor|manager|human|agent|specialist)",
+    r"(?:speak|talk|transfer|connect|forward)\s+(?:me\s+)?(?:to\s+)?(?:a|an|your|the|my)?\s*(?:senior\s+|tier-?2\s+|lead\s+)?(?:supervisor|manager|human|agent|specialist)",
     r"escalat(?:e|ing|ion)",
     r"(?:unresolved|file\s+a)\s+(?:dispute|complaint)",
     r"(?:account\s+(?:hacked|compromised|stolen))",
@@ -113,15 +113,43 @@ def deterministic_classify_intent(text: str) -> str:
     if any(k in lower for k in ["invoice", "receipt", "charge", "charged", "fee", "payment", "credit card", "billing", "promo", "discount", "coupon"]):
         return "BILLING"
 
-    # Priority 4: Shipping & Delivery
+    # Priority 4: Account & Security (checked before shipping when account/profile/email is explicit)
+    if any(
+        k in lower
+        for k in [
+            "password",
+            "login",
+            "reset",
+            "account profile",
+            "customer profile",
+            "email address",
+            "account settings",
+            "delete my account",
+            "delete account",
+            "create an account",
+            "register an account",
+            "customer account",
+            "phone number",
+            "sign in",
+            "credentials",
+            "gdpr",
+        ]
+    ):
+        return "ACCOUNT"
+
+    # Priority 4b: Explicit Order Fulfillment / Order Status before generic shipping
+    if any(k in lower for k in ["order fulfillment", "order status", "order confirmation", "place an order"]):
+        return "ORDER"
+
+    # Priority 5: Shipping & Delivery
     if any(k in lower for k in ["ship", "delivery", "track", "courier", "package", "address", "transit", "carrier"]):
         return "SHIPPING"
 
-    # Priority 5: Account & Security
-    if any(k in lower for k in ["password", "login", "reset", "account", "profile", "sign in", "credentials"]):
+    # Priority 6: General Account fallback
+    if any(k in lower for k in ["account", "profile"]):
         return "ACCOUNT"
 
-    # Priority 6: Order Management
+    # Priority 7: Order Management
     if any(k in lower for k in ["order", "purchase", "items", "cart", "checkout"]):
         return "ORDER"
 
@@ -233,9 +261,9 @@ def classify_intent_node(state: CopilotState) -> dict[str, Any]:
             "proposed_tool": None,
         }
 
-    # Live LLM classification if real OpenAI key configured
-    intent: str | None = None
-    if is_valid_openai_key(settings.openai_api_key):
+    # Fast-path deterministic intent classification (0.02ms); only call live LLM if ambiguous/OUT_OF_SCOPE
+    intent: str = deterministic_classify_intent(sanitized_query)
+    if intent == "OUT_OF_SCOPE" and is_valid_openai_key(settings.openai_api_key):
         try:
             llm = ChatOpenAI(
                 model=settings.openai_model,
@@ -255,11 +283,8 @@ def classify_intent_node(state: CopilotState) -> dict[str, Any]:
                         intent = category
         except Exception as exc:  # noqa: BLE001
             logger.warning(
-                f"Live LLM intent classification failed ({exc}); falling back to deterministic rules."
+                f"Live LLM intent classification failed ({exc}); keeping deterministic intent."
             )
-
-    if not intent:
-        intent = deterministic_classify_intent(sanitized_query)
 
     # Detect tool actions (refund, escalate, email)
     requires_tool, proposed_tool = detect_actionable_tool(sanitized_query, intent)
