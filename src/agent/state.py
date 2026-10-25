@@ -1,5 +1,6 @@
 """LangGraph state schema for FDE Copilot."""
-from typing import TypedDict, Annotated, Literal
+from typing import Annotated, Literal, TypedDict
+
 from langgraph.graph.message import add_messages
 
 

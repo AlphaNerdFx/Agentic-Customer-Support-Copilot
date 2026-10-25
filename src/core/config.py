@@ -1,6 +1,6 @@
 """Application settings and environment configuration."""
-from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 
     # LLM & Embeddings
     openai_api_key: str = Field(default="", description="OpenAI API key")
-    openai_model: str = Field(default="gpt-4o", description="Primary chat model")
+    openai_model: str = Field(default="gpt-4o-mini", description="Primary chat model")
     embedding_model: str = Field(
         default="text-embedding-3-small", 
         description="Embedding model"
