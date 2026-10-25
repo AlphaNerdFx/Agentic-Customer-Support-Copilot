@@ -9,7 +9,7 @@
 
 > **Embedded AI Copilot for Customer Support with Citation-Grounded RAG, Guarded Tool Execution, and Deterministic Human-in-the-Loop Approval Gates with Two-Tier Empirical TTL.**
 
-📚 **Documentation:** [Product Requirements (`docs/PRD.md`)](./docs/PRD.md) | [Technical Spec (`docs/SPEC.md`)](./docs/SPEC.md) | [Architecture Decisions (`docs/ADR.md`)](./docs/ADR.md) | [Development & Testing Guide (`docs/DEVELOPMENT.md`)](./docs/DEVELOPMENT.md) | [Changelog (`CHANGELOG.md`)](./CHANGELOG.md)
+📚 **Documentation:** [Product Requirements (`docs/PRD.md`)](./docs/PRD.md) | [Technical Spec (`docs/SPEC.md`)](./docs/SPEC.md) | [Architecture Decisions (`docs/ADR.md`)](./docs/ADR.md) | [Engineering Deep-Dive & Roadmap (`docs/ENGINEERING.md`)](./docs/ENGINEERING.md) | [Development Guide (`docs/DEVELOPMENT.md`)](./docs/DEVELOPMENT.md) | [Changelog (`CHANGELOG.md`)](./CHANGELOG.md)
 
 ---
 
