@@ -1,4 +1,9 @@
 """Pydantic request/response models for chat endpoints."""
+
+from __future__ import annotations
+
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -17,10 +22,11 @@ class CitationModel(BaseModel):
 
 
 class ToolProposalModel(BaseModel):
-    tool_name: str
-    parameters: dict
-    rationale: str
-    status: str = Field(default="awaiting_approval")
+    tool_call_id: str = Field(default="", description="Unique tool call identifier")
+    tool_name: str = Field(..., description="Target tool name")
+    parameters: dict[str, Any] = Field(default_factory=dict, description="Tool invocation parameters")
+    rationale: str = Field(..., description="Rationale for proposing the tool action")
+    status: str = Field(default="awaiting_approval", description="Gate status")
 
 
 class ChatResponseContent(BaseModel):
@@ -40,3 +46,13 @@ class ChatResponse(BaseModel):
     session_id: str
     response: ChatResponseContent
     metrics: ChatMetricsModel
+
+
+__all__ = [
+    "ChatMetricsModel",
+    "ChatRequest",
+    "ChatResponse",
+    "ChatResponseContent",
+    "CitationModel",
+    "ToolProposalModel",
+]

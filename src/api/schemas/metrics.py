@@ -10,4 +10,5 @@ class SystemMetricsResponse(BaseModel):
     tool_proposals: int
     tool_approvals: int
     tool_rejections: int
+    tool_expired: int = 0
     avg_citations_per_response: float

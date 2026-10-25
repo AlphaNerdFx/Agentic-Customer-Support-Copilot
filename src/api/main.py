@@ -1,7 +1,11 @@
 """FastAPI application factory for FDE Copilot."""
+
+from __future__ import annotations
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.api.routers import health
+
+from src.api.routers import chat, health, metrics
 
 
 def create_app() -> FastAPI:
@@ -9,7 +13,10 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="FDE Support Copilot API",
         version="0.1.0",
-        description="Backend API for customer support copilot with citation-grounded RAG and guarded tool execution."
+        description=(
+            "Backend API for customer support copilot with citation-grounded RAG "
+            "and guarded human-in-the-loop tool execution."
+        ),
     )
 
     app.add_middleware(
@@ -21,8 +28,12 @@ def create_app() -> FastAPI:
     )
 
     app.include_router(health.router)
+    app.include_router(chat.router)
+    app.include_router(metrics.router)
 
     return app
 
 
 app = create_app()
+
+__all__ = ["app", "create_app"]
