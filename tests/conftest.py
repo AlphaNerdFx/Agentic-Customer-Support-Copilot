@@ -1,6 +1,7 @@
 """Shared test fixtures for FDE Copilot."""
 import pytest
 
+
 @pytest.fixture
 def mock_kb_article():
     return {
